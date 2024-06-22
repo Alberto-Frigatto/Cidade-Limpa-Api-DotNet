@@ -9,7 +9,7 @@ namespace CidadeLimpa.Data.Contexts
         public DbSet<LixeiraModel> Lixeiras { get; set; }
         public DbSet<LixeiraParaColetaModel> LixeirasParaColeta { get; set; }
         public DbSet<PontoColetaModel> PontosColeta { get; set; }
-        
+        public DbSet<RotaModel> Rotas { get; set; }
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
@@ -35,11 +35,24 @@ namespace CidadeLimpa.Data.Contexts
             });
 
 
+            modelBuilder.Entity<RotaModel>(entity =>
+            {
+                entity.ToTable("Rota");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.HorarioInicio).IsRequired().HasMaxLength(5);
+                entity.Property(p => p.HorarioFim).IsRequired().HasMaxLength(5);
+            });
+
+
             modelBuilder.Entity<PontoColetaModel>(entity =>
             {
                 entity.ToTable("PontoColeta");
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Ponto).IsRequired().HasMaxLength(40);
+                entity.HasOne(p => p.Rota)
+                    .WithMany(r => r.ListaPontosColeta)
+                    .HasForeignKey(p => p.IdRota)
+                    .IsRequired();
             });
 
             base.OnModelCreating(modelBuilder);
