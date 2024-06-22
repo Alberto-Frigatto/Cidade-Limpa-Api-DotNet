@@ -4,10 +4,6 @@ namespace CidadeLimpa.ViewModels.In
 {
     public class UpdateLixeiraViewModel
     {
-        [Required(ErrorMessage = "O id da lixeira é obrigatório")]
-        [Range(1, int.MaxValue, ErrorMessage = "O id da lixeira é inválido")]
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "A localização é obrigatória")]
         [MinLength(1, ErrorMessage = "A localização não pode ser vazia")]
         [MaxLength(100, ErrorMessage = "A localização não deve exceder 100 caracteres")]
