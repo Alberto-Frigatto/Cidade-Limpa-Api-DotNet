@@ -11,6 +11,7 @@ namespace CidadeLimpa.Data.Contexts
         public DbSet<PontoColetaModel> PontosColeta { get; set; }
         public DbSet<RotaModel> Rotas { get; set; }
         public DbSet<CaminhaoModel> Caminhoes { get; set; }
+        public DbSet<ColetaModel> Coletas { get; set; }
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
@@ -56,6 +57,7 @@ namespace CidadeLimpa.Data.Contexts
                     .IsRequired();
             });
 
+
             modelBuilder.Entity<CaminhaoModel>(entity =>
             {
                 entity.ToTable("Caminhao");
@@ -64,6 +66,16 @@ namespace CidadeLimpa.Data.Contexts
                 entity.Property(p => p.Capacidade).IsRequired();
                 entity.Property(p => p.Placa).IsRequired().HasMaxLength(7);
                 entity.HasOne(e => e.Rota).WithMany().HasForeignKey(e => e.IdRota).IsRequired();
+            });
+
+
+            modelBuilder.Entity<ColetaModel>(entity =>
+            {
+                entity.ToTable("Coleta");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.DataColeta).IsRequired().HasMaxLength(10);
+                entity.HasOne(e => e.Caminhao).WithMany().HasForeignKey(e => e.IdCaminhao).IsRequired();
+                entity.HasOne(e => e.Lixeira).WithMany().HasForeignKey(e => e.IdLixeira).IsRequired();
             });
 
             base.OnModelCreating(modelBuilder);
