@@ -8,7 +8,8 @@ namespace CidadeLimpa.Data.Contexts
     {
         public DbSet<LixeiraModel> Lixeiras { get; set; }
         public DbSet<LixeiraParaColetaModel> LixeirasParaColeta { get; set; }
-
+        public DbSet<PontoColetaModel> PontosColeta { get; set; }
+        
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
@@ -31,6 +32,14 @@ namespace CidadeLimpa.Data.Contexts
                 entity.Property(p => p.DataLimite).IsRequired().HasColumnType("date");
                 entity.Property(p => p.Ativo).IsRequired().HasColumnType("number(1)");
                 entity.HasOne(e => e.Lixeira).WithMany().HasForeignKey(e => e.IdLixeira).IsRequired();
+            });
+
+
+            modelBuilder.Entity<PontoColetaModel>(entity =>
+            {
+                entity.ToTable("PontoColeta");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.Ponto).IsRequired().HasMaxLength(40);
             });
 
             base.OnModelCreating(modelBuilder);
