@@ -10,6 +10,7 @@ namespace CidadeLimpa.Data.Contexts
         public DbSet<LixeiraParaColetaModel> LixeirasParaColeta { get; set; }
         public DbSet<PontoColetaModel> PontosColeta { get; set; }
         public DbSet<RotaModel> Rotas { get; set; }
+        public DbSet<CaminhaoModel> Caminhoes { get; set; }
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
@@ -53,6 +54,16 @@ namespace CidadeLimpa.Data.Contexts
                     .WithMany(r => r.ListaPontosColeta)
                     .HasForeignKey(p => p.IdRota)
                     .IsRequired();
+            });
+
+            modelBuilder.Entity<CaminhaoModel>(entity =>
+            {
+                entity.ToTable("Caminhao");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.Modelo).IsRequired().HasMaxLength(50);
+                entity.Property(p => p.Capacidade).IsRequired();
+                entity.Property(p => p.Placa).IsRequired().HasMaxLength(7);
+                entity.HasOne(e => e.Rota).WithMany().HasForeignKey(e => e.IdRota).IsRequired();
             });
 
             base.OnModelCreating(modelBuilder);
