@@ -27,10 +27,10 @@ namespace CidadeLimpa.Repository
 
         public IEnumerable<RotaModel> GetAll(int page)
         {
-            return _context.Rotas.Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
+            return _context.Rotas.Include(e => e.ListaPontosColeta).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
         }
 
-        public RotaModel? GetById(int id) => _context.Rotas.Find(id);
+        public RotaModel? GetById(int id) => _context.Rotas.Include(e => e.ListaPontosColeta).FirstOrDefault(e => e.Id == id);
 
         public void Update(RotaModel model)
         {
