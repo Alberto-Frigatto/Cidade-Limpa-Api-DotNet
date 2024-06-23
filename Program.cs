@@ -30,6 +30,17 @@ var mapperConfig = new AutoMapper.MapperConfiguration(c => {
     c.CreateMap<LixeiraParaColetaModel, DisplayLixeiraParaColetaViewModel>();
 
     c.CreateMap<CreateUsuarioViewModel, UsuarioModel>();
+    
+    c.CreateMap<PontoColetaModel, DisplayPontoColetaViewModel>();
+
+    c.CreateMap<InRotaViewModel, RotaModel>();
+    c.CreateMap<RotaModel, DisplayRotaViewModel>();
+
+    c.CreateMap<InCaminhaoViewModel, CaminhaoModel>();
+    c.CreateMap<CaminhaoModel, DisplayCaminhaoViewModel>();
+
+    c.CreateMap<InColetaViewModel, ColetaModel>();
+    c.CreateMap<ColetaModel, DisplayColetaViewModel>();
 });
 
 IMapper mapper = mapperConfig.CreateMapper();
