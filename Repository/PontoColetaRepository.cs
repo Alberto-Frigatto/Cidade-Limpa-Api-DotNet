@@ -23,5 +23,7 @@ namespace CidadeLimpa.Repository
             _context.PontosColeta.Remove(model);
             _context.SaveChanges();
         }
+
+        public PontoColetaModel? GetById(int id) => _context.PontosColeta.Find(id);
     }
 }
