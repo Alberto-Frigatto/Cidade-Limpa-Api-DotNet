@@ -34,10 +34,18 @@ builder.Services.AddSingleton(mapper);
 /*adicionando os repositories*/
 builder.Services.AddScoped<ILixeiraRepository, LixeiraRepository>();
 builder.Services.AddScoped<ILixeiraParaColetaRepository, LixeiraParaColetaRepository>();
+builder.Services.AddScoped<IPontoColetaRepository, PontoColetaRepository>();
+builder.Services.AddScoped<IRotaRepository, RotaRepository>();
+builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
+builder.Services.AddScoped<IColetaRepository, ColetaRepository>();
 
 /*adicionando os services*/
 builder.Services.AddScoped<ILixeiraService, LixeiraService>();
 builder.Services.AddScoped<ILixeiraParaColetaService, LixeiraParaColetaService>();
+builder.Services.AddScoped<IPontoColetaService, PontoColetaService>();
+builder.Services.AddScoped<IRotaService, RotaService>();
+builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
+builder.Services.AddScoped<IColetaRepository,  ColetaRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
