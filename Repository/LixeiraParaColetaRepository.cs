@@ -27,10 +27,10 @@ namespace CidadeLimpa.Repository
 
         public IEnumerable<LixeiraParaColetaModel> GetAll(int page)
         {
-            return _context.LixeirasParaColeta.Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
+            return _context.LixeirasParaColeta.Include(e => e.Lixeira).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
         }
 
-        public LixeiraParaColetaModel? GetById(int id) => _context.LixeirasParaColeta.Find(id);
+        public LixeiraParaColetaModel? GetById(int id) => _context.LixeirasParaColeta.Include(e => e.Lixeira).FirstOrDefault(e => e.Id == id);
 
         public void Update(LixeiraParaColetaModel model)
         {
