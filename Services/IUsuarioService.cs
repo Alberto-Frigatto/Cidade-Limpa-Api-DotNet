@@ -6,6 +6,5 @@ namespace CidadeLimpa.Services
     {
         UsuarioModel? ObterUsuarioPorEmail(string email);
         void CriarUsuario(UsuarioModel model);
-        void AtualizarUsuario(UsuarioModel model);
     }
 }
