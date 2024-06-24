@@ -6,6 +6,5 @@ namespace CidadeLimpa.Repository
     {
         UsuarioModel? GetByEmail(string email);
         void Add(UsuarioModel model);
-        void Update(UsuarioModel model);
     }
 }
