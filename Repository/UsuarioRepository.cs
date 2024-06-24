@@ -19,11 +19,5 @@ namespace CidadeLimpa.Repository
         }
 
         public UsuarioModel? GetByEmail(string email) => _context.Usuarios.FirstOrDefault(e => e.Email == email);
-
-        public void Update(UsuarioModel model)
-        {
-            _context.Usuarios.Update(model);
-            _context.SaveChanges();
-        }
     }
 }
