@@ -12,6 +12,7 @@ namespace CidadeLimpa.Data.Contexts
         public DbSet<RotaModel> Rotas { get; set; }
         public DbSet<CaminhaoModel> Caminhoes { get; set; }
         public DbSet<ColetaModel> Coletas { get; set; }
+        public DbSet<UsuarioModel> Usuarios { get; set; }
         public DatabaseContext(DbContextOptions options) : base(options)
         {
         }
