@@ -25,8 +25,12 @@ namespace CidadeLimpa.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var usuario = _mapper.Map<UsuarioModel>(viewModel);
-            _service.CriarUsuario(usuario);
+            var usuario = _service.ObterUsuarioPorEmail(viewModel.Email);
+            if (usuario != null)
+                return Conflict();
+
+            var newUsuario = _mapper.Map<UsuarioModel>(viewModel);
+            _service.CriarUsuario(newUsuario);
 
             return NoContent();
         }
