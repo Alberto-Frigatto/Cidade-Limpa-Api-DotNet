@@ -18,11 +18,6 @@ namespace CidadeLimpa.Repository
             _context.SaveChanges();
         }
 
-        public void Delete(UsuarioModel model)
-        {
-            _context.Usuarios.Remove(model);
-            _context.SaveChanges();
-        }
         public UsuarioModel? GetByEmail(string email) => _context.Usuarios.FirstOrDefault(e => e.Email == email);
 
         public void Update(UsuarioModel model)
