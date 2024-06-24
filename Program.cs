@@ -28,6 +28,8 @@ var mapperConfig = new AutoMapper.MapperConfiguration(c => {
     c.CreateMap<CreateLixeiraParaColetaViewModel, LixeiraParaColetaModel>();
     c.CreateMap<UpdateLixeiraParaColetaViewModel, LixeiraParaColetaModel>();
     c.CreateMap<LixeiraParaColetaModel, DisplayLixeiraParaColetaViewModel>();
+
+    c.CreateMap<CreateUsuarioViewModel, UsuarioModel>();
 });
 
 IMapper mapper = mapperConfig.CreateMapper();
