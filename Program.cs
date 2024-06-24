@@ -41,14 +41,16 @@ builder.Services.AddScoped<IPontoColetaRepository, PontoColetaRepository>();
 builder.Services.AddScoped<IRotaRepository, RotaRepository>();
 builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 builder.Services.AddScoped<IColetaRepository, ColetaRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 /*adicionando os services*/
 builder.Services.AddScoped<ILixeiraService, LixeiraService>();
 builder.Services.AddScoped<ILixeiraParaColetaService, LixeiraParaColetaService>();
 builder.Services.AddScoped<IPontoColetaService, PontoColetaService>();
 builder.Services.AddScoped<IRotaService, RotaService>();
-builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
-builder.Services.AddScoped<IColetaRepository,  ColetaRepository>();
+builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
+builder.Services.AddScoped<IColetaService, ColetaService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddAuthentication(options =>
 {
