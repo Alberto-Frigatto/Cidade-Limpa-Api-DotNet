@@ -78,6 +78,14 @@ namespace CidadeLimpa.Data.Contexts
                 entity.HasOne(e => e.Lixeira).WithMany().HasForeignKey(e => e.IdLixeira).IsRequired();
             });
 
+            modelBuilder.Entity<UsuarioModel>(entity => {
+                entity.ToTable("Usuario");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.Email).IsRequired().HasMaxLength(100);
+                entity.HasIndex(p => p.Email).IsUnique();
+                entity.Property(p => p.Senha).IsRequired().HasMaxLength(255);
+            });
+
             base.OnModelCreating(modelBuilder);
         }
     }
