@@ -12,8 +12,6 @@ namespace CidadeLimpa.Services
             _repository = repository;
         }
 
-        public void AtualizarUsuario(UsuarioModel model) => _repository.Update(model);
-
         public void CriarUsuario(UsuarioModel model) => _repository.Add(model);
 
         public UsuarioModel? ObterUsuarioPorEmail(string email) => _repository.GetByEmail(email);
