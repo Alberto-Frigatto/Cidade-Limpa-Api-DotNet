@@ -5,7 +5,10 @@ using CidadeLimpa.Repository;
 using CidadeLimpa.Services;
 using CidadeLimpa.ViewModels.In;
 using CidadeLimpa.ViewModels.Output;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +49,22 @@ builder.Services.AddScoped<IPontoColetaService, PontoColetaService>();
 builder.Services.AddScoped<IRotaService, RotaService>();
 builder.Services.AddScoped<ICaminhaoRepository, CaminhaoRepository>();
 builder.Services.AddScoped<IColetaRepository,  ColetaRepository>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("f+ujXAKHk00L5jlMXo2XhAWawsOoihNP1OiAM25lLSO57+X7uBMQgwPju6yzyePi")),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
