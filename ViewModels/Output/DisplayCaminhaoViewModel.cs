@@ -8,6 +8,6 @@ namespace CidadeLimpa.ViewModels.Output
         public string? Modelo { get; set; }
         public int Capacidade { get; set; }
         public string? Placa { get; set; }
-        public RotaModel Rota { get; set; }
+        public DisplayRotaViewModel Rota { get; set; }
     }
 }
