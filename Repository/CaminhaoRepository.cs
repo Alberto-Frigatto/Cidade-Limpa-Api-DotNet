@@ -27,10 +27,10 @@ namespace CidadeLimpa.Repository
 
         public IEnumerable<CaminhaoModel> GetAll(int page)
         {
-            return _context.Caminhoes.Include(e => e.Rota).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
+            return _context.Caminhoes.Include(e => e.Rota).Include(e => e.Rota.ListaPontosColeta).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
         }
 
-        public CaminhaoModel? GetById(int id) => _context.Caminhoes.Include(e => e.Rota).FirstOrDefault(e => e.Id == id);
+        public CaminhaoModel? GetById(int id) => _context.Caminhoes.Include(e => e.Rota).Include(e => e.Rota.ListaPontosColeta).FirstOrDefault(e => e.Id == id);
 
         public void Update(CaminhaoModel model)
         {
