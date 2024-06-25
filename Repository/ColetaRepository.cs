@@ -27,9 +27,9 @@ namespace CidadeLimpa.Repository
 
         public IEnumerable<ColetaModel> GetAll(int page)
         {
-            return _context.Coletas.Include(e => e.Caminhao).Include(e => e.Lixeira).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
+            return _context.Coletas.Include(e => e.Caminhao).Include(e => e.Lixeira).Include(e => e.Caminhao.Rota).Include(e => e.Caminhao.Rota.ListaPontosColeta).Skip((page - 1) * page).Take(20).AsNoTracking().ToList();
         }
 
-        public ColetaModel? GetById(int id) => _context.Coletas.Include(e => e.Caminhao).Include(e => e.Lixeira).FirstOrDefault(e => e.Id == id);
+        public ColetaModel? GetById(int id) => _context.Coletas.Include(e => e.Caminhao).Include(e => e.Lixeira).Include(e => e.Caminhao.Rota).Include(e => e.Caminhao.Rota.ListaPontosColeta).FirstOrDefault(e => e.Id == id);
     }
 }
