@@ -3,12 +3,14 @@ using CidadeLimpa.Models;
 using CidadeLimpa.Services;
 using CidadeLimpa.ViewModels.In;
 using CidadeLimpa.ViewModels.Output;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CidadeLimpa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CaminhaoController : ControllerBase
     {
         private readonly ICaminhaoService _serviceCaminhao;
@@ -23,6 +25,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<PaginationCaminhaoViewModel>> GetAll([FromQuery] int page = 1)
         {
             var caminhoes = _serviceCaminhao.ListarCaminhoes(page);
@@ -37,6 +40,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<DisplayCaminhaoViewModel> GetById(int id)
         {
             var caminhao = _serviceCaminhao.ObterCaminhaoPorId(id);
@@ -50,6 +54,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([FromBody] InCaminhaoViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult Update(int id, [FromBody] InCaminhaoViewModel viewModel)
         {
             var caminhao = _serviceCaminhao.ObterCaminhaoPorId(id);
@@ -87,6 +93,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _serviceCaminhao.ExcluirCaminhao(id);

@@ -4,11 +4,13 @@ using CidadeLimpa.ViewModels.In;
 using CidadeLimpa.ViewModels.Output;
 using Microsoft.AspNetCore.Mvc;
 using CidadeLimpa.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CidadeLimpa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LixeiraController : ControllerBase
     {
         private readonly ILixeiraService _service;
@@ -21,6 +23,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<PaginationLixeiraViewModel>> GetAll([FromQuery] int page = 1)
         {
             var lixeiras = _service.ListarLixeiras(page);
@@ -35,6 +38,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<DisplayLixeiraViewModel> GetById(int id)
         {
             var lixeira = _service.ObterLixeiraPorId(id);
@@ -48,6 +52,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([FromBody] CreateLixeiraViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -60,6 +65,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult Update(int id, [FromBody] UpdateLixeiraViewModel viewModel)
         {
             var lixeira = _service.ObterLixeiraPorId(id);
@@ -74,6 +80,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _service.ExcluirLixeira(id);

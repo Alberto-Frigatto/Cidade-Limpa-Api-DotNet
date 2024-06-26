@@ -3,12 +3,14 @@ using CidadeLimpa.Models;
 using CidadeLimpa.Services;
 using CidadeLimpa.ViewModels.In;
 using CidadeLimpa.ViewModels.Output;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CidadeLimpa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LixeiraParaColetaController : ControllerBase
     {
         private readonly ILixeiraParaColetaService _lixeiraParaColetaService;
@@ -23,6 +25,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<PaginationLixeiraParaColetaViewModel>> GetAll([FromQuery] int page = 1)
         {
             var lixeirasParaColeta = _lixeiraParaColetaService.ListarLixeirasParaColeta(page);
@@ -37,6 +40,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<DisplayLixeiraParaColetaViewModel> GetById(int id)
         {
             var lixeiraParaColeta = _lixeiraParaColetaService.ObterLixeiraParaColetaPorId(id);
@@ -50,6 +54,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([FromBody] CreateLixeiraParaColetaViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -74,6 +79,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult Update(int id, [FromBody] UpdateLixeiraParaColetaViewModel viewModel)
         {
             var lixeiraParaColeta = _lixeiraParaColetaService.ObterLixeiraParaColetaPorId(id);
@@ -88,6 +94,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _lixeiraParaColetaService.ExcluirLixeiraParaColeta(id);

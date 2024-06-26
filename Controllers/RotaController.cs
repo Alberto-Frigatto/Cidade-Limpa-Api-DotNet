@@ -3,12 +3,14 @@ using CidadeLimpa.Models;
 using CidadeLimpa.Services;
 using CidadeLimpa.ViewModels.In;
 using CidadeLimpa.ViewModels.Output;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CidadeLimpa.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RotaController : ControllerBase
     {
         private readonly IRotaService _serviceRota;
@@ -23,6 +25,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<PaginationRotaViewModel>> GetAll([FromQuery] int page = 1)
         {
             var rotas = _serviceRota.ListarRotas(page);
@@ -37,6 +40,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<DisplayRotaViewModel> GetById(int id)
         {
             var rota = _serviceRota.ObterRotaPorId(id);
@@ -50,6 +54,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create([FromBody] InRotaViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -78,6 +83,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult Update(int id, [FromBody] InRotaViewModel viewModel)
         {
             var rota = _serviceRota.ObterRotaPorId(id);
@@ -110,6 +116,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var rota = _serviceRota.ObterRotaPorId(id);

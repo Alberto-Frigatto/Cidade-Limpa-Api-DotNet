@@ -20,7 +20,7 @@ namespace CidadeLimpa.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] CreateUsuarioViewModel viewModel)
+        public ActionResult Create([FromBody] InUsuarioViewModel viewModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
