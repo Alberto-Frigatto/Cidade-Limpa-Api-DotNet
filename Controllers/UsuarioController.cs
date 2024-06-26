@@ -27,7 +27,7 @@ namespace CidadeLimpa.Controllers
 
             var usuario = _service.ObterUsuarioPorEmail(viewModel.Email);
             if (usuario != null)
-                return Conflict();
+                return Conflict("O usuário já existe");
 
             var newUsuario = _mapper.Map<UsuarioModel>(viewModel);
             _service.CriarUsuario(newUsuario);
