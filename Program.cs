@@ -29,7 +29,7 @@ var mapperConfig = new AutoMapper.MapperConfiguration(c => {
     c.CreateMap<UpdateLixeiraParaColetaViewModel, LixeiraParaColetaModel>();
     c.CreateMap<LixeiraParaColetaModel, DisplayLixeiraParaColetaViewModel>();
 
-    c.CreateMap<CreateUsuarioViewModel, UsuarioModel>();
+    c.CreateMap<InUsuarioViewModel, UsuarioModel>();
     
     c.CreateMap<PontoColetaModel, DisplayPontoColetaViewModel>();
 
@@ -64,6 +64,7 @@ builder.Services.AddScoped<IRotaService, RotaService>();
 builder.Services.AddScoped<ICaminhaoService, CaminhaoService>();
 builder.Services.AddScoped<IColetaService, ColetaService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddAuthentication(options =>
 {
