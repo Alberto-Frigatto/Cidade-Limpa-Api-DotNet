@@ -19,5 +19,6 @@ namespace CidadeLimpa.Repository
         }
 
         public UsuarioModel? GetByEmail(string email) => _context.Usuarios.FirstOrDefault(e => e.Email == email);
+        public UsuarioModel? GetByEmailAndSenha(string email, string senha) => _context.Usuarios.FirstOrDefault(e => e.Email == email && e.Senha  == senha);
     }
 }
