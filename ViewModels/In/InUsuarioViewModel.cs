@@ -2,7 +2,7 @@
 
 namespace CidadeLimpa.ViewModels.In
 {
-    public class CreateUsuarioViewModel
+    public class InUsuarioViewModel
     {
         [Required(ErrorMessage = "O email é obrigatório")]
         [MinLength(1, ErrorMessage = "O email não pode ser vazio")]
